@@ -35,7 +35,7 @@
 	<modules>
 		<module>HttpJsonToHttpJson-Java</module>
 		<module>HttpJsonToHttpJson-Lib</module>
-		<module>HttpJsonToHttpJson</module>
+		<module>HttpJsonToHttpJson-App</module>
 		<module>HttpJsonToHttpJson-TestJava</module>
 	</modules>
 	<build>
