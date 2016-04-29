@@ -2,11 +2,6 @@
 <projectDescription>
 	<name>HttpJsonToHttpJson-Parent</name>
 	<comment></comment>
-	<projects>
-		<project>HttpJsonToHttpJson</project>
-		<project>HttpJsonToHttpJson-Java</project>
-		<project>HttpJsonToHttpJson-TestJava</project>
-	</projects>
 	<buildSpec>
 		<buildCommand>
 			<name>com.ibm.etools.mft.bar.ext.barbuilder</name>

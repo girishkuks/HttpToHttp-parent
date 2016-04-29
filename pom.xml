@@ -10,7 +10,7 @@
 	<packaging>pom</packaging>
 	
 	<properties>
-	<gitUrl>https://github.com/sanketsw/HttpJsonToHttpJson.git</gitUrl>
+	<gitUrl>https://github.com/sanketsw/HttpJsonToHttpJson-Parent.git</gitUrl>
 	</properties>
 
 	<distributionManagement>
