@@ -38,6 +38,14 @@ public class TransformFailureResponse implements
 		// This could be the business or HTTP Request exception
 		MbMessage outMessage = outAssembly.getMessage();
 		String messageString = ComputeUtils.getStringFromBlob(outMessage);
+		
+		String errorString = null;
+		if(exceptionText == null && messageString== null) {
+			// This is a timeout on MQ
+			errorString = ErrorStatusCode.TimeoutException;
+		} else {	
+			errorString = ErrorStatusCode.InternalException;
+		}
 
 		// Log the input blob
 		logger.error("inputString {} ", messageString);
@@ -47,11 +55,11 @@ public class TransformFailureResponse implements
 		exceptionMessage.setShortException(exceptionText);
 		exceptionMessage.setMessage(messageString);
 		exceptionMessage.setBrokerAndServiceDetails(metadata);
-		exceptionMessage.setStaticProperties();
-
+		exceptionMessage.setStaticProperties();	
+		
 		// Return the error after mapping errorCode from cache/database
-		ErrorStatusCode errorCode = ErrorStatusCodeDomain.getInstance().getErrorCode(ErrorStatusCode.InternalException);
-
+		ErrorStatusCode errorCode = ErrorStatusCodeDomain.getInstance().getErrorCode(errorString);
+				
 		// If error code cannot be mapped, then return the original error
 		if (errorCode != null) {
 			exceptionMessage.setStatus(errorCode);
