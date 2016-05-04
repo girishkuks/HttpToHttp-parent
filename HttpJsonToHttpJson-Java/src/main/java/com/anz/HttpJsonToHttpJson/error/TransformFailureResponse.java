@@ -5,6 +5,7 @@ package com.anz.HttpJsonToHttpJson.error;
 
 import java.util.Calendar;
 
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.anz.common.compute.ComputeInfo;
@@ -23,9 +24,11 @@ import com.ibm.broker.plugin.MbMessageAssembly;
  */
 public class TransformFailureResponse implements
 		ITransformer<MbMessageAssembly, String> {
+			
+	private static final Logger logger = LogManager.getLogger();
 
 	@Override
-	public String execute(MbMessageAssembly outAssembly, Logger logger,
+	public String execute(MbMessageAssembly outAssembly, Logger appLogger,
 			ComputeInfo metadata) throws Exception {
 		
 		logger.entry();
@@ -67,6 +70,7 @@ public class TransformFailureResponse implements
 
 		out = TransformUtils.toJSON(exceptionMessage);
 		logger.info("Error Status Code object {}", out);
+		appLogger.error(out);
 		return out;
 	}
 
