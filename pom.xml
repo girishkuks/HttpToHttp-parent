@@ -5,12 +5,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.anz.api</groupId>
-	<artifactId>HttpJsonToHttpJson-Parent</artifactId>
+	<artifactId>HttpToHttp-parent</artifactId>
 	<version>0.0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
 	<properties>
-	<gitUrl>https://github.com/sanketsw/HttpJsonToHttpJson-Parent.git</gitUrl>
+	<gitUrl>https://github.com/sanketsw/HttpToHttp-parent.git</gitUrl>
 	</properties>
 
 	<distributionManagement>
@@ -33,10 +33,10 @@
 
 
 	<modules>
-		<module>HttpJsonToHttpJson-Java</module>
-		<module>HttpJsonToHttpJson-Lib</module>
-		<module>HttpJsonToHttpJson-App</module>
-		<module>HttpJsonToHttpJson-TestJava</module>
+		<module>HttpToHttp-java</module>
+		<module>HttpToHttp-lib</module>
+		<module>HttpToHttp-app</module>
+		<module>HttpToHttp-testjava</module>
 	</modules>
 	<build>
 		<plugins>
