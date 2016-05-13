@@ -39,6 +39,7 @@ public class TransformBLSampleWithCache implements ITransformer<String, String> 
 			
 			if (json.getResult() == null)
 				throw new Exception("invalid response data detected");
+			
 
 			// Read data from Cache
 			String objectKey = Operation.ADD;

@@ -3,6 +3,7 @@
  */
 package com.anz.HttpToHttp.transform;
 
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.anz.HttpToHttp.transform.pojo.NumbersInput;
@@ -16,6 +17,8 @@ import com.anz.common.transform.TransformUtils;
  * 
  */
 public class TransformBLSample implements ITransformer<String, String> {
+	
+	private static final Logger logger = LogManager.getLogger();
 
 	
 	/* (non-Javadoc)
@@ -29,6 +32,8 @@ public class TransformBLSample implements ITransformer<String, String> {
 				NumbersInput.class);
 		
 		json.setLeft(json.getLeft() + 100);
+		
+		logger.info("Accessing message flow level user defined property: {}", metadata.getUserDefinedProperties().get("HTTP_URL"));
 		
 		String out = TransformUtils.toJSON(json);
 		return out;

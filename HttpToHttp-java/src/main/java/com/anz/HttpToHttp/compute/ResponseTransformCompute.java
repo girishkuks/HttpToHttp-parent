@@ -4,6 +4,7 @@
 package com.anz.HttpToHttp.compute;
 
 import com.anz.HttpToHttp.transform.TransformBLSampleWithCache;
+import com.anz.common.compute.ComputeInfo;
 import com.anz.common.compute.impl.CommonBlobTransformCompute;
 import com.anz.common.transform.ITransformer;
 import com.ibm.broker.plugin.MbMessageAssembly;
@@ -23,9 +24,11 @@ public class ResponseTransformCompute extends CommonBlobTransformCompute {
 	}
 
 	@Override
-	public void saveUserProvidedProperties(MbMessageAssembly outAssembly) {
-		// Nothing to do here.
+	public void prepareForTransformation(ComputeInfo metadata,
+			MbMessageAssembly inAssembly, MbMessageAssembly outAssembly) {
+		// Auto-generated method stub
 		
 	}
 
+ 
 }

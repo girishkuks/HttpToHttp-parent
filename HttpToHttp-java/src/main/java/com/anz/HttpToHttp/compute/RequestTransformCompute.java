@@ -4,6 +4,7 @@
 package com.anz.HttpToHttp.compute;
 
 import com.anz.HttpToHttp.transform.TransformBLSample;
+import com.anz.common.compute.ComputeInfo;
 import com.anz.common.compute.impl.CommonBlobTransformCompute;
 import com.anz.common.transform.ITransformer;
 import com.ibm.broker.plugin.MbMessageAssembly;
@@ -23,10 +24,14 @@ public class RequestTransformCompute extends CommonBlobTransformCompute {
 	}
 
 	@Override
-	public void saveUserProvidedProperties(MbMessageAssembly outAssembly) {
-		// TODO get incident area
-		// Save to local environment
+	public void prepareForTransformation(ComputeInfo metadata,
+			MbMessageAssembly inAssembly, MbMessageAssembly outAssembly) {
+		
+		String userDefinedAttribute = "HTTP_URL";
+		metadata.addUserDefinedProperty(userDefinedAttribute, (String) getUserDefinedAttribute(userDefinedAttribute));
 		
 	}
+
+
 
 }

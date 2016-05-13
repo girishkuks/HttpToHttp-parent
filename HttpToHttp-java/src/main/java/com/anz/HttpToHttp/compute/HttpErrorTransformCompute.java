@@ -4,6 +4,7 @@
 package com.anz.HttpToHttp.compute;
 
 import com.anz.HttpToHttp.error.TransformHttpErrorResponse;
+import com.anz.common.compute.ComputeInfo;
 import com.anz.common.compute.TransformType;
 import com.anz.common.compute.impl.CommonErrorTransformCompute;
 import com.anz.common.transform.ITransformer;
@@ -26,6 +27,13 @@ public class HttpErrorTransformCompute extends CommonErrorTransformCompute {
 	@Override
 	public TransformType getTransformationType() {
 		return TransformType.HTTP_HHTP;
+	}
+
+	@Override
+	public void prepareForTransformation(ComputeInfo metadata,
+			MbMessageAssembly inAssembly, MbMessageAssembly outAssembly) {
+		// Auto-generated method stub
+		
 	}
 
 }

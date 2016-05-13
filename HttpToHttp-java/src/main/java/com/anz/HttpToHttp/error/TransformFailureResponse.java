@@ -36,7 +36,7 @@ public class TransformFailureResponse implements
 		String out = null;
 
 		String exceptionText = ComputeUtils.getExceptionText(outAssembly);
-		logger.error("exceptionText {} ", exceptionText);
+		logger.info("exceptionText {} ", exceptionText);
 
 		// This could be the business or HTTP Request exception
 		MbMessage outMessage = outAssembly.getMessage();
@@ -51,9 +51,10 @@ public class TransformFailureResponse implements
 		}
 
 		// Log the input blob
-		logger.error("inputString {} ", messageString);
+		logger.info("inputString {} ", messageString);
 
 		ExceptionMessage exceptionMessage = new ExceptionMessage();
+		exceptionMessage.setId(metadata.getUserDefinedProperties().get("Transaction-Id"));
 		exceptionMessage.setTimestamp(Calendar.getInstance().getTime());
 		exceptionMessage.setShortException(exceptionText);
 		exceptionMessage.setMessage(messageString);
