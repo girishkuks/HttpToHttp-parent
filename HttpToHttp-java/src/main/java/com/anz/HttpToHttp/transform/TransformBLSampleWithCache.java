@@ -32,7 +32,7 @@ public class TransformBLSampleWithCache implements ITransformer<String, String> 
 		logger.info("inputJson= {}", inputJson);
 		
 		String out = inputJson;
-		try {
+		/*try {
 			
 			Result json = (Result) TransformUtils.fromJSON(inputJson,
 					Result.class);
@@ -56,7 +56,7 @@ public class TransformBLSampleWithCache implements ITransformer<String, String> 
 			throw e;
 		}
 		
-		appLogger.info("{}: Response: {}", this.getClass().getName(), out);
+		appLogger.info("{}: Response: {}", this.getClass().getName(), out);*/
 		
 		return out;
 	}

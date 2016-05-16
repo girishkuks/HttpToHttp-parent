@@ -16,7 +16,7 @@ import com.anz.common.transform.TransformUtils;
  * @author sanketsw
  * 
  */
-public class TransformBLSample implements ITransformer<String, String> {
+public class PreTransformBLSample implements ITransformer<String, String> {
 	
 	private static final Logger logger = LogManager.getLogger();
 
@@ -28,14 +28,13 @@ public class TransformBLSample implements ITransformer<String, String> {
 		
 		appLogger.info("{}: Request: {}", this.getClass().getName(), inputJson);
 		
-		NumbersInput json = (NumbersInput) TransformUtils.fromJSON(inputJson,
-				NumbersInput.class);
+		//NumbersInput json = (NumbersInput) TransformUtils.fromJSON(inputJson,
+		//		NumbersInput.class);
 		
-		json.setLeft(json.getLeft() + 100);
-		json.setRight(json.getRight() + 100);
 		
-		String out = TransformUtils.toJSON(json);
-		return out;
+		
+		//String out = TransformUtils.toJSON(json);
+		return inputJson;
 	}
 
 

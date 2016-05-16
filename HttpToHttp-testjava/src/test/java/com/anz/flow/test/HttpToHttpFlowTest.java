@@ -49,12 +49,14 @@ public class HttpToHttpFlowTest extends FlowTest {
 	ObjectMapper objectMapper = new ObjectMapper();
 
 	private static final String TEST_FILE_001 = "HttpToHttp.Test001.xml";
-	private static final String applicationName = "HttpToHttp";
+	private static final String applicationName = "HttpToHttp-app";
 	private static final String flowName = "Main";
 	private static final String injectNodeName ="HTTP Input";
 	
-	
-	private static final String MESSAGE_FORMAT = "MessageFormat.xml";
+	// Choose message format for corresponding HTTP method
+	//private static final String MESSAGE_FORMAT = "DeleteMessageFormat.xml";
+	private static final String MESSAGE_FORMAT = "PostMessageFormat.xml";
+	//private static final String MESSAGE_FORMAT = "GetMessageFormat.xml";
 	
 	@Override
 	@Before
@@ -63,7 +65,9 @@ public class HttpToHttpFlowTest extends FlowTest {
 			ConfigManagerProxyLoggedException, IOException {
 		super.setup();	
 		
+		logger.info("integrationServerProxy: {}", getIntegrationServerProxy());
 		MessageFlowProxy flowProxy = getIntegrationServerProxy().getMessageFlowByName(flowName, applicationName, null);
+		logger.info("flowProxy: {}", flowProxy);
 		setFlowProxy(flowProxy);
 	}
 	
@@ -75,7 +79,7 @@ public class HttpToHttpFlowTest extends FlowTest {
 		String jsonBlob = TransformUtils.getBlob(message);
 		String messageFormat = IOUtils.toString(HttpToHttpFlowTest.class.getResourceAsStream(MESSAGE_FORMAT));
 		message = messageFormat.replace("MESSAGE_FORMAT", jsonBlob);
-		logger.info(message);
+		logger.info("Injecting message: \n {}", message);
 		
 		Properties injectProps = new Properties();
 		injectProps.setProperty(AttributeConstants.DATA_INJECTION_APPLICATION_LABEL, applicationName); 		
@@ -93,76 +97,60 @@ public class HttpToHttpFlowTest extends FlowTest {
 	@Test
 	public void testMainFlow() throws ConfigManagerProxyPropertyNotInitializedException, ConfigManagerProxyLoggedException, IOException, XPathExpressionException, SAXException, ParserConfigurationException, TransformerException, JSONException {
 		injectData();
-		testMappingNodeOutput();
-		testSimpleTransformNodeOutput();
-		testHttpRequestNodeOutput();
-		testFinalResult();
-	}
+		
+		// Choose Method to test corresponding HTTP method and message format
+		//testGetResult();
+		testPostResult();
+		//testDeleteResult();
 
-
-	
-	public void testMappingNodeOutput() throws ConfigManagerProxyPropertyNotInitializedException, XPathExpressionException, SAXException, IOException, ParserConfigurationException, TransformerException, JSONException {
-		
-		// Mapping Node
-		List<RecordedTestData> dataList = getTestDataList("Mapping1");
-		
-		String json = getNodeOutputJsonStringFromBlob(dataList.get(0));
-		JsonNode root = objectMapper.readTree(json);
-		
-		String element = root.at("/left").asText(); // The element can be specified as /Data/Account/right
-		assertEquals("6", element);
-		
-		element = root.at("/right").asText();
-		assertEquals("3", element);
-		
 	}
 	
 	
-	public void testSimpleTransformNodeOutput() throws ConfigManagerProxyPropertyNotInitializedException, XPathExpressionException, SAXException, IOException, ParserConfigurationException {	
-		// Pretransform Node
-		List<RecordedTestData> dataList = getTestDataList("Transform Request");
-		
-		String json = getNodeOutputJsonStringFromBlob(dataList.get(0));
-		NumbersInput out = gson.fromJson(json, NumbersInput.class);
-		
-		assertNotNull(out);
-		assertEquals(106, out.getLeft());
-		assertEquals(3, out.getRight());
-		
-	}
-	
+	private void testDeleteResult() throws ConfigManagerProxyPropertyNotInitializedException, XPathExpressionException, SAXException, IOException, ParserConfigurationException {
 
-
-	public void testHttpRequestNodeOutput() throws ConfigManagerProxyPropertyNotInitializedException, XPathExpressionException, SAXException, IOException, ParserConfigurationException {	
-
-		// HttpRequest Node
-		List<RecordedTestData> dataList = getTestDataList("HTTP Request");
-		
-		String json = getNodeOutputJsonStringFromBlob(dataList.get(0));
-		JsonNode root = objectMapper.readTree(json);
-		
-		String element = root.at("/imeplementation").asText(); // The element can be specified as /Data/Account/right
-		assertEquals("Java_SpringBoot", element);
-		
-		element = root.at("/result").asText();
-		assertEquals("109", element);	
-				
-	}
-	
-	public void testFinalResult() throws XPathExpressionException, SAXException, IOException, ParserConfigurationException, ConfigManagerProxyPropertyNotInitializedException {	
-		
-		// PostTransform node
-		List<RecordedTestData> dataList = getTestDataList("Transform Response");
+		List<RecordedTestData> dataList = getTestDataList("Delete");
 		
 		String json = getNodeOutputJsonStringFromBlob(dataList.get(0));
 		Result out = gson.fromJson(json, Result.class);
 		
-		assertEquals("IIB REST API implementation", out.getImeplementation());
+		
+		assertEquals("Java_SpringBoot", out.getImeplementation());
+		assertEquals("107", out.getResult());
+		
+	}
+
+	private void testPostResult() throws ConfigManagerProxyPropertyNotInitializedException, XPathExpressionException, SAXException, IOException, ParserConfigurationException {
+
+		List<RecordedTestData> dataList = getTestDataList("Post");
+		
+		String json = getNodeOutputJsonStringFromBlob(dataList.get(0));
+		Result out = gson.fromJson(json, Result.class);
+		
+		
+		assertEquals("Java_SpringBoot", out.getImeplementation());
+		assertEquals("209", out.getResult());
+		
+	}
+
+	private void testGetResult() throws ConfigManagerProxyPropertyNotInitializedException, XPathExpressionException, SAXException, IOException, ParserConfigurationException {
+
+		List<RecordedTestData> dataList = getTestDataList("Get");
+		
+		Node blob = getNodeOutput(dataList.get(0), "BLOB");
+		
+		logger.info("blob = {}", blob);
+		
+		String json = getNodeOutputJsonStringFromBlob(dataList.get(0));
+		
+		logger.info("retrieved message = {}", json);
+		
+		Result out = gson.fromJson(json, Result.class);
+		
+		
+		//assertEquals("Hello World from Java_SpringBoot", out.getServiceName());
 		assertEquals(Operation.ADD, out.getOperation());
 		assertEquals("109", out.getResult());
 		
 	}
-
-
 
 }
