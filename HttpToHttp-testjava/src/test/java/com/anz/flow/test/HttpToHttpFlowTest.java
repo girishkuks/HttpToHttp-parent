@@ -136,20 +136,12 @@ public class HttpToHttpFlowTest extends FlowTest {
 
 		List<RecordedTestData> dataList = getTestDataList("Get");
 		
-		Node blob = getNodeOutput(dataList.get(0), "BLOB");
-		
-		logger.info("blob = {}", blob);
-		
 		String json = getNodeOutputJsonStringFromBlob(dataList.get(0));
 		
-		logger.info("retrieved message = {}", json);
+		JsonNode root = objectMapper.readTree(json);
 		
-		Result out = gson.fromJson(json, Result.class);
-		
-		
-		//assertEquals("Hello World from Java_SpringBoot", out.getServiceName());
-		assertEquals(Operation.ADD, out.getOperation());
-		assertEquals("109", out.getResult());
+		String element = root.asText(); 
+		assertEquals("Hello World from Java_SpringBoot", element);
 		
 	}
 
