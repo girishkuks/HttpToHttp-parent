@@ -41,7 +41,7 @@ import com.ibm.broker.config.proxy.RecordedTestData;
  * @author sanketsw
  * 
  */
-public class HttpToHttpFlowTest extends FlowTest {
+public class HttpToHttpDeleteFlowTest extends FlowTest {
 
 	private static final Logger logger = LogManager.getLogger();
 	
@@ -52,11 +52,7 @@ public class HttpToHttpFlowTest extends FlowTest {
 	private static final String applicationName = "HttpToHttp-app";
 	private static final String flowName = "Main";
 	private static final String injectNodeName ="HTTP Input";
-	
-	// Choose message format for corresponding HTTP method
-	//private static final String MESSAGE_FORMAT = "DeleteMessageFormat.xml";
-	private static final String MESSAGE_FORMAT = "PostMessageFormat.xml";
-	//private static final String MESSAGE_FORMAT = "GetMessageFormat.xml";
+	private static final String MESSAGE_FORMAT = "DeleteMessageFormat.xml";
 	
 	@Override
 	@Before
@@ -75,9 +71,9 @@ public class HttpToHttpFlowTest extends FlowTest {
 		
 		logger.info("injecting data...");
 		// load test data from file
-		String message = IOUtils.toString(HttpToHttpFlowTest.class.getResourceAsStream(TEST_FILE_001));
+		String message = IOUtils.toString(HttpToHttpDeleteFlowTest.class.getResourceAsStream(TEST_FILE_001));
 		String jsonBlob = TransformUtils.getBlob(message);
-		String messageFormat = IOUtils.toString(HttpToHttpFlowTest.class.getResourceAsStream(MESSAGE_FORMAT));
+		String messageFormat = IOUtils.toString(HttpToHttpDeleteFlowTest.class.getResourceAsStream(MESSAGE_FORMAT));
 		message = messageFormat.replace("MESSAGE_FORMAT", jsonBlob);
 		logger.info("Injecting message: \n {}", message);
 		
@@ -96,12 +92,9 @@ public class HttpToHttpFlowTest extends FlowTest {
 	
 	@Test
 	public void testMainFlow() throws ConfigManagerProxyPropertyNotInitializedException, ConfigManagerProxyLoggedException, IOException, XPathExpressionException, SAXException, ParserConfigurationException, TransformerException, JSONException {
-		injectData();
 		
-		// Choose Method to test corresponding HTTP method and message format
-		//testGetResult();
-		testPostResult();
-		//testDeleteResult();
+		injectData();
+		testDeleteResult();
 
 	}
 	
@@ -116,32 +109,6 @@ public class HttpToHttpFlowTest extends FlowTest {
 		
 		assertEquals("Java_SpringBoot", out.getImeplementation());
 		assertEquals("107", out.getResult());
-		
-	}
-
-	private void testPostResult() throws ConfigManagerProxyPropertyNotInitializedException, XPathExpressionException, SAXException, IOException, ParserConfigurationException {
-
-		List<RecordedTestData> dataList = getTestDataList("Post");
-		
-		String json = getNodeOutputJsonStringFromBlob(dataList.get(0));
-		Result out = gson.fromJson(json, Result.class);
-		
-		
-		assertEquals("Java_SpringBoot", out.getImeplementation());
-		assertEquals("209", out.getResult());
-		
-	}
-
-	private void testGetResult() throws ConfigManagerProxyPropertyNotInitializedException, XPathExpressionException, SAXException, IOException, ParserConfigurationException {
-
-		List<RecordedTestData> dataList = getTestDataList("Get");
-		
-		String json = getNodeOutputJsonStringFromBlob(dataList.get(0));
-		
-		JsonNode root = objectMapper.readTree(json);
-		
-		String element = root.asText(); 
-		assertEquals("Hello World from Java_SpringBoot", element);
 		
 	}
 

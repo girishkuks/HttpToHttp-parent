@@ -14,5 +14,10 @@
 		<Connection iib:valueType="CHARACTER">keep-alive</Connection>
 		<Accept iib:valueType="CHARACTER">text/html, image/gif, image/jpeg, *;
 			q=.2, */*; q=.2</Accept>
-	</HTTPInputHeader>	
+	</HTTPInputHeader>
+	<BLOB iib:parser="none">
+		<UnknownParserName iib:valueType="CHARACTER"
+			iib:elementType="0x03000000"></UnknownParserName>
+		<BLOB iib:valueType="BLOB">MESSAGE_FORMAT</BLOB>
+	</BLOB>
 </message>
