@@ -4,7 +4,7 @@
     <generation engine="xquery"/>
     <mappingDeclaration name="Main_Mapping">
         <input path="mb:msg(BLOB,assembly,BLOB,Properties)" var="ComIbmMessageAssembly_BLOB"/>
-        <output path="mb:msg(BLOB,assembly,BLOB,Properties)" var="ComIbmMessageAssembly_BLOB1"/>
+        <output path="mb:msg(BLOB,assembly,BLOB,Properties,HTTPInputHeader)" var="ComIbmMessageAssembly_BLOB1"/>
         <move>
             <input path="$ComIbmMessageAssembly_BLOB/Properties"/>
             <output path="$ComIbmMessageAssembly_BLOB1/Properties"/>
