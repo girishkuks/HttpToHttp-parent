@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.anz.bl.transform;
+package com.anz.HttpToHttp.transform;
 
 import static org.junit.Assert.assertTrue;
 
@@ -24,14 +24,11 @@ public class TransformBLSampleWithCacheTest {
 	private static Logger logger = LogManager.getLogger();
 
 	
-	//@Test
+	@Test
 	public void testTransformResponseData() throws Exception {
 		String in  = "{\"imeplementation\":\"Java_SpringBoot\",\"result\":\"35\"}";
-		String expected = "{\"imeplementation\":\"IIB REST API implementation\"}";
+		String expected = "{\"imeplementation\":\"IIB REST API implementation\",  \"operation\": \"Add\"}";
 		String notExpected = "{\"imeplementation\":\"Java_SpringBoot\"}";
-		Operation op = new Operation();	
-		op.setOperation(Operation.ADD);
-		op.setImeplementation("IIB REST API implementation");
 		
 		String out =  new TransformBLSampleWithCache().execute(in, logger, new ComputeInfo());
 		
