@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.anz.bl.transform;
+package com.anz.HttpToHttp.transform;
 
 import static org.junit.Assert.assertTrue;
 
@@ -11,9 +11,11 @@ import org.json.JSONObject;
 import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 
-import com.anz.HttpToHttp.transform.TransformBLSampleWithCache;
 import com.anz.common.compute.ComputeInfo;
+import com.anz.common.dataaccess.daos.IOperationDao;
 import com.anz.common.dataaccess.models.iib.Operation;
+import com.anz.common.ioc.IIoCFactory;
+import com.anz.common.ioc.spring.AnzSpringIoCFactory;
 
 /**
  * @author sanketsw
@@ -22,16 +24,28 @@ import com.anz.common.dataaccess.models.iib.Operation;
 public class TransformBLSampleWithCacheTest {
 	
 	private static Logger logger = LogManager.getLogger();
+	
+	private void createOperationInDatabase() throws Exception {
+		
+		IIoCFactory factory = AnzSpringIoCFactory.getInstance();
+		IOperationDao operationDao = factory.getBean(IOperationDao.class);
+		
+		Operation operation2 = new Operation();
+		operation2.setQualifier(Operation.ADD);
+		operation2.setOperation("Add test operation");
+		operation2.setImeplementation("IIB REST API implementation test");
+		operationDao.saveAndFlush(operation2);
+	}
 
 	
 	@Test
 	public void testTransformResponseData() throws Exception {
+		
+		createOperationInDatabase();
+		
 		String in  = "{\"imeplementation\":\"Java_SpringBoot\",\"result\":\"35\"}";
-		String expected = "{\"imeplementation\":\"IIB REST API implementation\"}";
+		String expected = "{\"imeplementation\":\"IIB REST API implementation test\",  \"operation\": \"Add test operation\"}";
 		String notExpected = "{\"imeplementation\":\"Java_SpringBoot\"}";
-		Operation op = new Operation();	
-		op.setOperation(Operation.ADD);
-		op.setImeplementation("IIB REST API implementation");
 		
 		String out =  new TransformBLSampleWithCache().execute(in, logger, new ComputeInfo());
 		
@@ -56,22 +70,5 @@ public class TransformBLSampleWithCacheTest {
 		assertTrue(exceptionThrown);
 		
 	}
-	
-	//@Test
-	public void testCachedDataTransformation() throws Exception {
-		String in  = "{\"imeplementation\":\"Java_SpringBoot\",\"result\":\"35\"}";
-		String expected = "{\"operation\":\"Add\"}";
-		
-		Operation op = new Operation();	
-		op.setOperation(Operation.ADD);
-		op.setImeplementation("IIB REST API implementation");
-		String out = null;
-		try {
-			out =  new TransformBLSampleWithCache().execute(in, logger, new ComputeInfo());		
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		JSONObject json = new JSONObject(out);
-		JSONAssert.assertEquals(expected, json, false);
-	}
+
 }
