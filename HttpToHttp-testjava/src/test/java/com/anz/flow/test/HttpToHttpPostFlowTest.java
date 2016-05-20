@@ -84,6 +84,8 @@ public class HttpToHttpPostFlowTest extends FlowTest {
 		injectProps.setProperty(AttributeConstants.DATA_INJECTION_WAIT_TIME, "60000");
 		injectProps.setProperty(AttributeConstants.DATA_INJECTION_MESSAGE_SECTION, message);
 		
+		logger.info("integration server = {}", getIntegrationServerProxy().toString());
+		
 		// execute flow in sychronous mode
 		@SuppressWarnings("unused")
 		boolean result = getIntegrationServerProxy().injectTestData(injectProps, true);

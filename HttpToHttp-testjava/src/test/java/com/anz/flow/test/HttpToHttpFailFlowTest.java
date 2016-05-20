@@ -49,7 +49,7 @@ public class HttpToHttpFailFlowTest extends FlowTest {
 	private Gson gson = new Gson();
 	ObjectMapper objectMapper = new ObjectMapper();
 
-	private static final String TEST_FILE_001 = "HttpToHttp.Test001.xml";
+	private static final String TEST_FILE_001 = "HttpToHttp.FailTest001.xml";
 	private static final String applicationName = "HttpToHttp-app";
 	private static final String flowName = "Main";
 	private static final String injectNodeName ="HTTP Input";
@@ -73,9 +73,9 @@ public class HttpToHttpFailFlowTest extends FlowTest {
 		logger.info("injecting data...");
 		// load test data from file
 		String message = IOUtils.toString(HttpToHttpFailFlowTest.class.getResourceAsStream(TEST_FILE_001));
-		String jsonBlob = TransformUtils.getBlob(message);
+		//String jsonBlob = TransformUtils.getBlob(message);
 		String messageFormat = IOUtils.toString(HttpToHttpFailFlowTest.class.getResourceAsStream(MESSAGE_FORMAT));
-		message = messageFormat.replace("MESSAGE_FORMAT", jsonBlob);
+		message = messageFormat.replace("MESSAGE_FORMAT", message);
 		logger.info("Injecting message: \n {}", message);
 		
 		Properties injectProps = new Properties();
@@ -84,6 +84,8 @@ public class HttpToHttpFailFlowTest extends FlowTest {
 		injectProps.setProperty(AttributeConstants.DATA_INJECTION_NODE_UUID, getNodeUUID(injectNodeName));
 		injectProps.setProperty(AttributeConstants.DATA_INJECTION_WAIT_TIME, "60000");
 		injectProps.setProperty(AttributeConstants.DATA_INJECTION_MESSAGE_SECTION, message);
+		
+		
 		
 		// execute flow in sychronous mode
 		@SuppressWarnings("unused")
