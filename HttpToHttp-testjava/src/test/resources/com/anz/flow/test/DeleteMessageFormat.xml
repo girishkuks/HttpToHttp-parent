@@ -3,15 +3,10 @@
 	<HTTPInputHeader iib:parser="WSINPHDR">
 		<X-Server-Name iib:valueType="CHARACTER">localhost</X-Server-Name>
 		<X-Server-Port iib:valueType="CHARACTER">7800</X-Server-Port>
-		<Host iib:valueType="CHARACTER">localhost:7800</Host>
-		<Content-Length iib:valueType="CHARACTER">31</Content-Length>
 		<X-Original-HTTP-Command iib:valueType="CHARACTER">DELETE
 			http://localhost:7800/HttpToHttp HTTP/1.1</X-Original-HTTP-Command>
-		<X-Remote-Addr iib:valueType="CHARACTER">127.0.0.1</X-Remote-Addr>
-		<User-Agent iib:valueType="CHARACTER">Java/1.7.0</User-Agent>
-		<X-Remote-Host iib:valueType="CHARACTER">127.0.0.1</X-Remote-Host>
-		<Content-Type iib:valueType="CHARACTER">application/json</Content-Type>
 		<Connection iib:valueType="CHARACTER">keep-alive</Connection>
+		<Transaction-Id>73489348495</Transaction-Id>
 		<Accept iib:valueType="CHARACTER">text/html, image/gif, image/jpeg, *;
 			q=.2, */*; q=.2</Accept>
 	</HTTPInputHeader>

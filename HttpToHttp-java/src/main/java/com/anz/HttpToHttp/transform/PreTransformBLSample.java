@@ -6,10 +6,8 @@ package com.anz.HttpToHttp.transform;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.anz.HttpToHttp.transform.pojo.NumbersInput;
 import com.anz.common.compute.ComputeInfo;
 import com.anz.common.transform.ITransformer;
-import com.anz.common.transform.TransformUtils;
 
 
 /**

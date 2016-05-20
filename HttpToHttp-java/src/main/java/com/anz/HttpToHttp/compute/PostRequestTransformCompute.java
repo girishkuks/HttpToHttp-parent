@@ -6,9 +6,7 @@ package com.anz.HttpToHttp.compute;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.anz.HttpToHttp.transform.PreTransformBLSample;
 import com.anz.HttpToHttp.transform.TransformBLSample;
-import com.anz.HttpToHttp.transform.TransformBLSampleWithCache;
 import com.anz.common.compute.ComputeInfo;
 import com.anz.common.compute.impl.CommonBlobTransformCompute;
 import com.anz.common.compute.impl.ComputeUtils;
@@ -42,6 +40,7 @@ public class PostRequestTransformCompute extends CommonBlobTransformCompute {
 		try {
 			ComputeUtils.setElementInTree("POST", outAssembly.getLocalEnvironment() ,"Destination", "HTTP", "RequestLine", "Method");
 			ComputeUtils.setElementInTree(getUserDefinedAttribute("HTTP_POST_URL"), outAssembly.getLocalEnvironment() ,"Destination", "HTTP", "RequestURL");
+			ComputeUtils.setElementInTree("application/json", outAssembly.getMessage() ,"Properties", "ContentType");
 		} catch (MbException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -3,13 +3,10 @@
  */
 package com.anz.HttpToHttp.compute;
 
-import com.anz.HttpToHttp.transform.TransformBLSample;
 import com.anz.HttpToHttp.transform.TransformBLSampleWithCache;
 import com.anz.common.compute.ComputeInfo;
 import com.anz.common.compute.impl.CommonBlobTransformCompute;
-import com.anz.common.compute.impl.ComputeUtils;
 import com.anz.common.transform.ITransformer;
-import com.ibm.broker.plugin.MbException;
 import com.ibm.broker.plugin.MbMessageAssembly;
 
 /**
