@@ -3,7 +3,7 @@
  */
 package com.anz.HttpToHttp.compute;
 
-import com.anz.HttpToHttp.transform.TransformBLSampleWithCache;
+import com.anz.HttpToHttp.transform.PreTransformBLSample;
 import com.anz.common.compute.ComputeInfo;
 import com.anz.common.compute.impl.CommonBlobTransformCompute;
 import com.anz.common.transform.ITransformer;
@@ -20,14 +20,9 @@ public class GetResponseTransformCompute extends CommonBlobTransformCompute {
 	 */
 	@Override
 	public ITransformer<String, String> getTransformer() {
-		return new TransformBLSampleWithCache();
+		return new PreTransformBLSample();
 	}
 
-	@Override
-	public void prepareForTransformation(ComputeInfo metadata,
-			MbMessageAssembly inAssembly, MbMessageAssembly outAssembly) {
-		
-	}
 
 
 

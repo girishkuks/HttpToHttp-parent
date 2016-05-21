@@ -26,7 +26,7 @@ public class TransformBLSample implements ITransformer<String, String> {
 	 */
 	public String execute(String inputJson, Logger appLogger, ComputeInfo metadata) throws Exception {
 		
-		appLogger.info("{}: Request: {}", this.getClass().getName(), inputJson);
+		logger.info("{}: Request: {}", this.getClass().getName(), inputJson);
 		
 		NumbersInput json = (NumbersInput) TransformUtils.fromJSON(inputJson,
 				NumbersInput.class);

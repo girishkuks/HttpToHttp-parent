@@ -34,8 +34,6 @@ public class PostRequestTransformCompute extends CommonBlobTransformCompute {
 	public void prepareForTransformation(ComputeInfo metadata,
 			MbMessageAssembly inAssembly, MbMessageAssembly outAssembly) {
 		
-		appLogger.info("inside prepareForTransformation");
-		
 		// Set HTTP Method and URL to local environment
 		try {
 			ComputeUtils.setElementInTree("POST", outAssembly.getLocalEnvironment() ,"Destination", "HTTP", "RequestLine", "Method");

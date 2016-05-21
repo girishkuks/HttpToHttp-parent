@@ -23,11 +23,6 @@ public class DeleteResponseTransformCompute extends CommonBlobTransformCompute {
 		return new TransformBLSampleWithCache();
 	}
 
-	@Override
-	public void prepareForTransformation(ComputeInfo metadata,
-			MbMessageAssembly inAssembly, MbMessageAssembly outAssembly) {
-		
-	}
 
 
 }

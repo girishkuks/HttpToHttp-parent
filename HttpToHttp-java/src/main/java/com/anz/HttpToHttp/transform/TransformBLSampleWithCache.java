@@ -56,7 +56,7 @@ public class TransformBLSampleWithCache implements ITransformer<String, String> 
 			throw e;
 		}
 		
-		appLogger.info("{}: Response: {}", this.getClass().getName(), out);
+		logger.info("{}: Response: {}", this.getClass().getName(), out);
 		
 		return out;
 	}
