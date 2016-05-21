@@ -4,6 +4,7 @@
 package com.anz.flow.test;
 
 import static org.junit.Assert.assertEquals;
+
 import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
@@ -71,9 +72,9 @@ public class HttpToHttpPostFlowTest extends FlowTest {
 		
 		logger.info("injecting data...");
 		// load test data from file
-		String message = IOUtils.toString(HttpToHttpDeleteFlowTest.class.getResourceAsStream(TEST_FILE_001));
+		String message = IOUtils.toString(HttpToHttpPostFlowTest.class.getResourceAsStream(TEST_FILE_001));
 		String jsonBlob = TransformUtils.getBlob(message);
-		String messageFormat = IOUtils.toString(HttpToHttpDeleteFlowTest.class.getResourceAsStream(MESSAGE_FORMAT));
+		String messageFormat = IOUtils.toString(HttpToHttpPostFlowTest.class.getResourceAsStream(MESSAGE_FORMAT));
 		message = messageFormat.replace("MESSAGE_FORMAT", jsonBlob);
 		logger.info("Injecting message: \n {}", message);
 		
@@ -83,8 +84,6 @@ public class HttpToHttpPostFlowTest extends FlowTest {
 		injectProps.setProperty(AttributeConstants.DATA_INJECTION_NODE_UUID, getNodeUUID(injectNodeName));
 		injectProps.setProperty(AttributeConstants.DATA_INJECTION_WAIT_TIME, "60000");
 		injectProps.setProperty(AttributeConstants.DATA_INJECTION_MESSAGE_SECTION, message);
-		
-		logger.info("integration server = {}", getIntegrationServerProxy().toString());
 		
 		// execute flow in sychronous mode
 		@SuppressWarnings("unused")

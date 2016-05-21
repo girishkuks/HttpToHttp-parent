@@ -71,9 +71,9 @@ public class HttpToHttpGetFlowTest extends FlowTest {
 		
 		logger.info("injecting data...");
 		// load test data from file
-		String message = IOUtils.toString(HttpToHttpDeleteFlowTest.class.getResourceAsStream(TEST_FILE_001));
+		String message = IOUtils.toString(HttpToHttpGetFlowTest.class.getResourceAsStream(TEST_FILE_001));
 		String jsonBlob = TransformUtils.getBlob(message);
-		String messageFormat = IOUtils.toString(HttpToHttpDeleteFlowTest.class.getResourceAsStream(MESSAGE_FORMAT));
+		String messageFormat = IOUtils.toString(HttpToHttpGetFlowTest.class.getResourceAsStream(MESSAGE_FORMAT));
 		message = messageFormat.replace("MESSAGE_FORMAT", jsonBlob);
 		logger.info("Injecting message: \n {}", message);
 		
