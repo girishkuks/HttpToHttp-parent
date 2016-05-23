@@ -3,6 +3,7 @@
 	<name>HttpToHttp-testjava</name>
 	<comment></comment>
 	<projects>
+		<project>anz-iib-commons</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
