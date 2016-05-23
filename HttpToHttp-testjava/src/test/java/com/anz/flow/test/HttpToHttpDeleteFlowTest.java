@@ -108,7 +108,7 @@ public class HttpToHttpDeleteFlowTest extends FlowTest {
 		Result out = gson.fromJson(json, Result.class);
 		
 		
-		assertEquals("Java_SpringBoot", out.getImeplementation());
+		assertEquals("IIB REST API implementation", out.getImeplementation());
 		assertEquals("107", out.getResult());
 		
 	}
