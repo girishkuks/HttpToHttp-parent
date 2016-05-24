@@ -12,12 +12,10 @@ import com.anz.common.compute.impl.CommonErrorTransformCompute;
  */
 public class FailureTransformCompute extends CommonErrorTransformCompute {
 
-
-
-	@Override
 	public TransformType getTransformationType() {
 		return TransformType.HTTP_HHTP;
 	}
+
 
 
 }
