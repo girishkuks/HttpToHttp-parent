@@ -13,7 +13,9 @@ import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 
 import com.anz.HttpToHttp.transform.TransformBLSample;
+import com.anz.HttpToHttp.transform.pojo.NumbersInput;
 import com.anz.common.compute.ComputeInfo;
+import com.anz.common.transform.TransformUtils;
 
 /**
  * @author sanketsw
@@ -48,6 +50,9 @@ public class TransformBLSampleTest extends TestCase {
 		JSONObject json = new JSONObject(out);
 		JSONAssert.assertEquals(expected, json, false);
 		JSONAssert.assertNotEquals(notExpected, json, false);
+		
+		NumbersInput outObj = TransformUtils.fromJSON(out, NumbersInput.class);
+		assertEquals(100, outObj.getLeft());
 	}
 	
 	

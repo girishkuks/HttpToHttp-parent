@@ -88,7 +88,6 @@ import com.ibm.broker.config.proxy.RecordedTestData;
 				injectProps.setProperty(AttributeConstants.DATA_INJECTION_MESSAGE_SECTION, message);
 				
 				logger.info("integration server = {}", getIntegrationServerProxy().toString());
-				logger.info("injectProps = {}", injectProps);
 				
 				// execute flow in sychronous mode
 				@SuppressWarnings("unused")
