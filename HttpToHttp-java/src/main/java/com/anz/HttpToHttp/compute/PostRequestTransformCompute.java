@@ -36,12 +36,20 @@ public class PostRequestTransformCompute extends CommonBlobTransformCompute {
 		
 		// Set HTTP Method and URL to local environment
 		try {
+			
+			String postURL = (String) ComputeUtils.getFlowProxy("TESTNODE_root", "default", "HttpToHttp-app", "Main")
+					.getUserDefinedProperty("HTTP_POST_URL");
+			
+			logger.info("HTTP_POST_URL = {}", postURL);
+			
 			ComputeUtils.setElementInTree("POST", outAssembly.getLocalEnvironment() ,"Destination", "HTTP", "RequestLine", "Method");
-			ComputeUtils.setElementInTree(getUserDefinedAttribute("HTTP_POST_URL"), outAssembly.getLocalEnvironment() ,"Destination", "HTTP", "RequestURL");
+			ComputeUtils.setElementInTree(postURL, outAssembly.getLocalEnvironment() ,"Destination", "HTTP", "RequestURL");
 			ComputeUtils.setElementInTree("application/json", outAssembly.getMessage() ,"Properties", "ContentType");
-		} catch (MbException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+		} catch (Exception e) {
+
+			logger.throwing(e);
+			
 		}
 		
 	}

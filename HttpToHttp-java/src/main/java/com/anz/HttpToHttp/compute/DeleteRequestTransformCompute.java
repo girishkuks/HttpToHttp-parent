@@ -31,11 +31,19 @@ public class DeleteRequestTransformCompute extends CommonBlobTransformCompute {
 		
 		// Set HTTP Method and URL to local environment
 		try {
+			
+			String deleteURL = (String) ComputeUtils.getFlowProxy("TESTNODE_root", "default", "HttpToHttp-app", "Main")
+					.getUserDefinedProperty("HTTP_DELETE_URL");
+			
+			logger.info("HTTP_DELETE_URL = {}", deleteURL);
+			
 			ComputeUtils.setElementInTree("DELETE", outAssembly.getLocalEnvironment() ,"Destination", "HTTP", "RequestLine", "Method");
-			ComputeUtils.setElementInTree(getUserDefinedAttribute("HTTP_DELETE_URL"), outAssembly.getLocalEnvironment() ,"Destination", "HTTP", "RequestURL");
-		} catch (MbException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ComputeUtils.setElementInTree(deleteURL, outAssembly.getLocalEnvironment() ,"Destination", "HTTP", "RequestURL");
+			
+		} catch (Exception e) {
+			
+			logger.throwing(e);
+			
 		}
 		
 	}

@@ -107,6 +107,7 @@ public class HttpToHttpPostFlowTest extends FlowTest {
 		String json = getNodeOutputJsonStringFromBlob(dataList.get(0));
 		Result out = gson.fromJson(json, Result.class);
 		
+		logger.info("json = {}", json);
 		
 		assertEquals("IIB REST API implementation", out.getImeplementation());
 		assertEquals("209", out.getResult());
