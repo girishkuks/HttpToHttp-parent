@@ -49,7 +49,7 @@ public class HttpToHttpPostFlowTest extends FlowTest {
 	private Gson gson = new Gson();
 	ObjectMapper objectMapper = new ObjectMapper();
 
-	private static final String TEST_FILE_001 = "HttpToHttp.Test001.xml";
+	private static final String TEST_FILE_001 = "HttpToHttp.XMLTest001.xml";
 	private static final String applicationName = "HttpToHttp-app";
 	private static final String flowName = "Main";
 	private static final String injectNodeName ="HTTP Input";

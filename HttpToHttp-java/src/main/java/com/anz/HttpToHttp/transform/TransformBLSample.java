@@ -28,14 +28,17 @@ public class TransformBLSample implements ITransformer<String, String> {
 		
 		logger.info("{}: Request: {}", this.getClass().getName(), inputJson);
 		
-		NumbersInput json = (NumbersInput) TransformUtils.fromJSON(inputJson,
+		NumbersInput json = (NumbersInput) TransformUtils.convertFromXml(inputJson,
 				NumbersInput.class);
+		
+		logger.info("numbersinput = {}", json.toString());
 		
 		json.setLeft(json.getLeft() + 100);
 		json.setRight(json.getRight() + 100);
 		
 		String out = TransformUtils.toJSON(json);
 		return out;
+		
 	}
 
 

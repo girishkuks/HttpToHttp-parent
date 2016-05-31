@@ -40,6 +40,8 @@ public class TransformBLSampleWithCache implements ITransformer<String, String> 
 			if (json.getResult() == null)
 				throw new Exception("invalid response data detected");
 			
+			
+			
 
 			// Read data from Cache
 			String objectKey = Operation.ADD;
@@ -49,7 +51,7 @@ public class TransformBLSampleWithCache implements ITransformer<String, String> 
 			json.setImeplementation(op.getImeplementation());			
 			json.setComment("read from jdbc type4 connection and cached:" + op);
 
-			out = TransformUtils.toJSON(json);
+			out = TransformUtils.convertToXml(json, Result.class);
 			
 		} catch (Exception e) {
 			logger.throwing(e);
