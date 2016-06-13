@@ -6,12 +6,12 @@
 
 	<groupId>com.anz.api</groupId>
 	<artifactId>HttpToHttp-parent</artifactId>
-	<version>0.0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
 	<properties>
-	<gitUrl>https://github.com/sanketsw/HttpToHttp-parent.git</gitUrl>
-	</properties>
+	   <scm.url>https://master@10.52.36.21:8443/r/iib/HttpToHttp-parent.git</scm.url>
+ 	</properties>
 
 	<distributionManagement>
 		<repository>
@@ -37,6 +37,7 @@
 		<module>HttpToHttp-lib</module>
 		<module>HttpToHttp-app</module>
 		<module>HttpToHttp-testjava</module>
+		<module>package</module>
 	</modules>
 	<build>
 		<plugins>
