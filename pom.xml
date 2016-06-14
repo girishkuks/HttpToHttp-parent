@@ -31,13 +31,7 @@
 			<uniqueVersion>true</uniqueVersion>
 		</snapshotRepository>
 	</distributionManagement>
-
-	<scm>
-		<connection>scm:git:${gitUrl}</connection>
-		<developerConnection>scm:git:${gitUrl}</developerConnection>
-	</scm>
-
-
+	
 	<modules>
 		<module>HttpToHttp-java</module>
 		<module>HttpToHttp-lib</module>
