@@ -20,17 +20,17 @@
     	</scm>
 
 	<distributionManagement>
-		<repository>
-			<id>release</id>
-			<url>http://localhost:8081/artifactory/ext-release-local</url>
-			<uniqueVersion>true</uniqueVersion>
-		</repository>
-		<snapshotRepository>
-			<id>snapshot</id>
-			<url>http://localhost:8081/artifactory/ext-snapshot-local</url>
-			<uniqueVersion>true</uniqueVersion>
-		</snapshotRepository>
-	</distributionManagement>
+                <repository>
+                        <id>release</id>
+                        <url>http://centralrepository.anz.com:8081/artifactory/ext-release-local</url>
+                        <uniqueVersion>true</uniqueVersion>
+                </repository>
+                <snapshotRepository>
+                        <id>snapshot</id>
+                        <url>http://centralrepository.anz.com:8081/artifactory/ext-snapshot-local</url>
+                        <uniqueVersion>true</uniqueVersion>
+                </snapshotRepository>
+    </distributionManagement>
 	
 	<modules>
 		<module>HttpToHttp-java</module>
